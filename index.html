@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avid Pest Control | Northwest Arkansas | Pea Ridge, Rogers, Bentonville</title>
+    <meta name="description" content="Affordable, family-owned pest control serving Pea Ridge, Bentonville, Rogers, Garfield, and NWA. No long-term contracts. Pet & kid friendly treatments.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom styling extensions for premium animations and design accents -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        /* Smooth fade-in scroll reveals */
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Pulse animation for notice dot */
+        
+        @keyframes pulse-dot {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        
+        .pulse-green {
+            animation: pulse-dot 2s infinite;
+        }
+        
+        /* Shimmer button effect */
+        
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 40%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0.1) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(45deg);
+            transition: all 0.7s ease;
+            opacity: 0;
+        }
+        
+        .shimmer-btn:hover::after {
+            opacity: 1;
+            left: 100%;
+            top: 100%;
+        }
+        
+        /* Subtle grid-dot texture overlay */
+        
+        .grid-dots {
+            background-image: radial-gradient(rgba(34, 197, 94, 0.12) 1.2px, transparent 1.2px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Navigation Header -->
+    <header class="bg-slate-950/90 backdrop-blur-md shadow-lg border-b border-slate-900 sticky top-0 z-40 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            
+            <!-- Logo Section -->
+            <a href="#" class="relative z-50 group flex items-center w-28 md:w-36 h-10" aria-label="Avid Pest Control Home">
+                <img src="/assets/logo-lM5zd1qj.png" alt="Avid Pest Control Logo" class="absolute -top-3 left-0 h-24 md:h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-105" style="filter: drop-shadow(1px 0 0 #ffffff) drop-shadow(-1px 0 0 #ffffff) drop-shadow(0 1px 0 #ffffff) drop-shadow(0 -1px 0 #ffffff);">
+            </a>
+
+            <!-- Desktop Navigation links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+                <a href="#hero" class="hover:text-green-400 transition-colors">Home</a>
+                <a href="#difference" class="hover:text-green-400 transition-colors">The Difference</a>
+                <a href="#services" class="hover:text-green-400 transition-colors">Services</a>
+                <a href="#areas" class="hover:text-green-400 transition-colors">Service Areas</a>
+                <a href="#quote-form" class="hover:text-green-400 transition-colors">Get Estimate</a>
+            </nav>
+
+            <!-- Navigation Actions -->
+            <div class="flex items-center space-x-3">
+                <a href="tel:+14796444061" class="shimmer-btn bg-green-700 text-white px-5 py-2.5 rounded-xl font-bold hover:bg-green-800 transition flex items-center space-x-2 shadow-md hover:shadow-green-700/20 active:scale-95 duration-150">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Call / Text: (479) 644-4061</span>
+                    <span class="sm:hidden">(479) 644-4061</span>
+                </a>
+                
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-900 text-slate-400 focus:outline-none" aria-label="Toggle Navigation Menu">
+                    <i data-lucide="menu" class="w-6 h-6 transition-transform duration-300" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-900 bg-slate-950 px-4 py-4 space-y-3 shadow-inner">
+            <a href="#hero" class="mobile-nav-link block py-2 text-slate-300 font-medium hover:text-green-400">Home</a>
+            <a href="#difference" class="mobile-nav-link block py-2 text-slate-300 font-medium hover:text-green-400">The Difference</a>
+            <a href="#services" class="mobile-nav-link block py-2 text-slate-300 font-medium hover:text-green-400">Services</a>
+            <a href="#areas" class="mobile-nav-link block py-2 text-slate-300 font-medium hover:text-green-400">Service Areas</a>
+            <a href="#quote-form" class="mobile-nav-link block py-2 text-slate-300 font-medium hover:text-green-400">Get Estimate</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="bg-slate-950 py-16 md:py-24 border-b border-slate-800/60 relative overflow-hidden">
+        <!-- Texture Overlay -->
+        <div class="absolute inset-0 grid-dots pointer-events-none"></div>
+        <!-- Floating glowing background lights -->
+        <div class="absolute top-1/4 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 left-10 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <!-- Text Content (Left) -->
+                <div class="md:col-span-7 text-left">
+                    <span class="inline-flex items-center gap-1.5 bg-green-950/80 border border-green-800 text-green-400 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 pulse-green"></span>
+                        Family-Owned & Local NWA Experts
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-black text-white mt-6 tracking-tight leading-none md:leading-tight">
+                        Honest, Reliable Pest Control in <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-500">Northwest Arkansas</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-400 mt-6 leading-relaxed font-normal">
+                        Proudly serving Pea Ridge, Rogers, Bentonville, Garfield, and surrounding areas. We eliminate bugs safely without trapping you in high-pressure, mandatory 12-month contracts.
+                    </p>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4 max-w-lg">
+                        <a href="tel:+14796444061" class="w-full sm:w-auto bg-green-700 hover:bg-green-600 text-white text-lg font-bold px-8 py-4 rounded-xl active:scale-98 transition shadow-lg hover:shadow-green-500/20 hover:shadow-xl flex items-center justify-center space-x-3 duration-150 shimmer-btn">
+                            <i data-lucide="phone-call" class="w-5 h-5"></i>
+                            <span>Call or Text: (479) 644-4061</span>
+                        </a>
+                        <a href="#quote-form" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 text-lg font-bold px-8 py-4 rounded-xl active:scale-98 transition flex items-center justify-center space-x-2 duration-150">
+                            <span>Get Online Estimate</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Quick Trust Badges -->
+                    <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4 text-xs text-slate-400 font-semibold max-w-xl">
+                        <div class="flex items-center space-x-2 bg-slate-950/70 py-2.5 px-4 rounded-lg border border-slate-800/80">
+                            <i data-lucide="shield-check" class="text-green-500 w-4 h-4 flex-shrink-0"></i> 
+                            <span>Licensed & Insured</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-slate-950/70 py-2.5 px-4 rounded-lg border border-slate-800/80">
+                            <i data-lucide="heart" class="text-green-500 w-4 h-4 flex-shrink-0"></i> 
+                            <span>Pet & Kid Friendly</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-slate-950/70 py-2.5 px-4 rounded-lg border border-slate-800/80 col-span-2 md:col-span-1">
+                            <i data-lucide="ban" class="text-green-500 w-4 h-4 flex-shrink-0"></i> 
+                            <span>No Long Contracts</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Generated Photo with Glowing border (Right) -->
+                <div class="md:col-span-5 relative">
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-green-500 to-green-400 rounded-3xl blur opacity-30 animate-pulse"></div>
+                    <img src="/assets/hero_bg-N8Y6bp6m.png" alt="Avid Pest Control Professional Service in Arkansas" class="relative rounded-3xl shadow-2xl border border-slate-800 object-cover w-full h-[400px] md:h-[450px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Avid Section (Anti-Corporate Positioning) -->
+    <section id="difference" class="py-24 bg-slate-900 border-b border-slate-800/50 reveal">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold text-green-400 uppercase tracking-widest bg-green-950/30 px-3 py-1 rounded-full border border-green-900/40">The Avid Difference</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-4 tracking-tight">Why Neighbors Choose Avid</h2>
+                <div class="w-12 h-1 bg-green-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 mt-4 text-base">We treat you like neighbors, not a corporate sales quota.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-950 p-8 rounded-3xl shadow-xl border border-slate-900 hover:border-green-500/20 hover:scale-[1.02] transition-all duration-300">
+                    <div class="w-12 h-12 bg-green-950/50 rounded-2xl flex items-center justify-center text-green-400 mb-6 border border-green-800/30"><i data-lucide="calendar-x" class="w-6 h-6"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">No Locked-In Contracts</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Most big brands try to legally bind you to a 12-month deal. We earn your business with every single visit. Cancel whenever you want.
+                    </p>
+                </div>
+                <div class="bg-slate-950 p-8 rounded-3xl shadow-xl border border-slate-900 hover:border-green-500/20 hover:scale-[1.02] transition-all duration-300">
+                    <div class="w-12 h-12 bg-green-950/50 rounded-2xl flex items-center justify-center text-green-400 mb-6 border border-green-800/30"><i data-lucide="smile" class="w-6 h-6"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Direct Access to Owners</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Skip the agonizing national call centers. When you call Avid, you speak directly with local experts who live and work right here in Benton County.
+                    </p>
+                </div>
+                <div class="bg-slate-950 p-8 rounded-3xl shadow-xl border border-slate-900 hover:border-green-500/20 hover:scale-[1.02] transition-all duration-300">
+                    <div class="w-12 h-12 bg-green-950/50 rounded-2xl flex items-center justify-center text-green-400 mb-6 border border-green-800/30"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Targeted & Safe Solutions</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        We don't blindly douse your home in harsh chemicals. We use precise, state-of-the-art products engineered to protect your structure while keeping kids and pets safe.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Services Grid (Using Custom Generated Imagery) -->
+    <section id="services" class="bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 py-24 border-b border-slate-900 reveal">
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold text-green-400 uppercase tracking-widest bg-green-950/50 px-3 py-1 rounded-full border border-green-900/85">Our Core Protections</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-4 tracking-tight">Our Core Pest Protections</h2>
+                <div class="w-12 h-1 bg-green-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 mt-4 text-base">Comprehensive defense against common Arkansas invaders.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 shadow-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 flex flex-col h-full group hover:border-green-500/20">
+                    <div class="h-44 w-full overflow-hidden relative">
+                        <img src="/assets/service_general-yc6j5UQ8.png" alt="General Pest Control Sprayer Treatment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-[10px] font-bold text-green-400 bg-green-950 border border-green-900/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider">Ants, Spiders, Roaches</span>
+                            </div>
+                            <h4 class="font-bold text-lg text-white mb-2">General Pest Control</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed">Strategic perimeter barriers that stop seasonal crawlers and household pests before they step inside.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 shadow-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 flex flex-col h-full group hover:border-green-500/20">
+                    <div class="h-44 w-full overflow-hidden relative">
+                        <img src="/assets/service_termite-B1HZnlJA.png" alt="Termite Treatment & Inspection Arkansas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-[10px] font-bold text-green-400 bg-green-950 border border-green-900/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider">Structural Remediation</span>
+                            </div>
+                            <h4 class="font-bold text-lg text-white mb-2">Termite Protection</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed">Advanced soil treatments and bait monitoring systems to protect your home's wood foundation from costly damage.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 shadow-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 flex flex-col h-full group hover:border-green-500/20">
+                    <div class="h-44 w-full overflow-hidden relative">
+                        <img src="/assets/service_mosquito-yZxNQlg_.png" alt="Mosquito Yard Treatment Spraying" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-[10px] font-bold text-green-400 bg-green-950 border border-green-900/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider">Seasonal Summer Defense</span>
+                            </div>
+                            <h4 class="font-bold text-lg text-white mb-2">Mosquito & Yard</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed">Targeted breeding-zone treatments so your family can safely enjoy the backyard without constant biting.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="bg-slate-900 rounded-3xl border border-slate-800 shadow-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 flex flex-col h-full group hover:border-green-500/20">
+                    <div class="h-44 w-full overflow-hidden relative">
+                        <img src="/assets/service_rodent-DKaSyXFl.png" alt="Specialty Extermination Rodents Wasps Fleas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="text-[10px] font-bold text-green-400 bg-green-950 border border-green-900/60 px-2.5 py-0.5 rounded-full uppercase tracking-wider">Rodents, Wasps, Fleas</span>
+                            </div>
+                            <h4 class="font-bold text-lg text-white mb-2">Specialty Extermination</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed">Fast, reactive exclusion work and emergency control for active mice entries, hornets, or interior fleas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Geographic Footprint (Essential Local SEO Mapping) -->
+    <section id="areas" class="py-24 bg-slate-950 text-center reveal grid-dots">
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <h2 class="text-3xl font-extrabold text-white">Our Benton County Service Areas</h2>
+            <div class="w-12 h-1 bg-green-500 mx-auto mt-4 rounded-full mb-6"></div>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed text-base">
+                Headquartered proudly in <strong class="text-white font-semibold">Pea Ridge</strong>, our service trucks are out daily on Highway 62, Highway 94, and across NWA. We offer exceptionally fast dispatch to:
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
+                <span class="bg-slate-900 text-slate-200 border border-slate-800/80 shadow-md text-sm px-5 py-2.5 rounded-full font-semibold flex items-center gap-2 hover:border-green-500 transition-colors">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-green-400"></i> Pea Ridge
+                </span>
+                <span class="bg-slate-900 text-slate-200 border border-slate-800/80 shadow-md text-sm px-5 py-2.5 rounded-full font-semibold flex items-center gap-2 hover:border-green-500 transition-colors">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-green-400"></i> Rogers
+                </span>
+                <span class="bg-slate-900 text-slate-200 border border-slate-800/80 shadow-md text-sm px-5 py-2.5 rounded-full font-semibold flex items-center gap-2 hover:border-green-500 transition-colors">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-green-400"></i> Bentonville
+                </span>
+                <span class="bg-slate-900 text-slate-200 border border-slate-800/80 shadow-md text-sm px-5 py-2.5 rounded-full font-semibold flex items-center gap-2 hover:border-green-500 transition-colors">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-green-400"></i> Garfield
+                </span>
+                <span class="bg-slate-900 text-slate-200 border border-slate-800/80 shadow-md text-sm px-5 py-2.5 rounded-full font-semibold flex items-center gap-2 hover:border-green-500 transition-colors">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-green-400"></i> Bella Vista
+                </span>
+                <span class="bg-slate-900 text-slate-200 border border-slate-800/80 shadow-md text-sm px-5 py-2.5 rounded-full font-semibold flex items-center gap-2 hover:border-green-500 transition-colors">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-green-400"></i> Centerton
+                </span>
+            </div>
+            
+            <p class="text-sm text-slate-500 mt-8 font-medium">
+                Don't see your community listed? Call to check routing schedules for your neighborhood.
+            </p>
+        </div>
+    </section>
+
+    <!-- Conversion Intake Form Section -->
+    <section id="quote-form" class="bg-gradient-to-b from-slate-900 to-slate-950 text-white py-24 px-4 relative overflow-hidden border-t border-slate-900">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-xl mx-auto bg-slate-950 text-slate-200 p-8 md:p-10 rounded-3xl shadow-2xl relative z-10 border border-slate-800">
+            <h3 class="text-2xl md:text-3xl font-extrabold text-white text-center mb-2 tracking-tight">Get Your Free Quote</h3>
+            <p class="text-slate-400 text-sm text-center mb-8 max-w-sm mx-auto leading-relaxed">Fill out this quick form and a local team member will contact you shortly.</p>
+            
+            <!-- JavaScript intercept handles submission with premium loader/toast. Action is pre-configured. -->
+            <form id="lead-form" action="https://formspree.io/f/PLACEHOLDER" method="POST" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Your Name</label>
+                    <input type="text" name="name" required placeholder="John Doe" class="w-full border border-slate-800 rounded-xl px-4 py-3 bg-slate-900/60 focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-slate-900 transition-all text-sm text-white">
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Phone Number</label>
+                        <input type="tel" name="phone" required placeholder="(479) 644-4061" class="w-full border border-slate-800 rounded-xl px-4 py-3 bg-slate-900/60 focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-slate-900 transition-all text-sm text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Your City</label>
+                        <input type="text" name="city" placeholder="e.g., Rogers" required class="w-full border border-slate-800 rounded-xl px-4 py-3 bg-slate-900/60 focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-slate-900 transition-all text-sm text-white">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">What pests are you seeing?</label>
+                    <textarea name="message" rows="3" placeholder="Ants in kitchen, wasps near porch, annual checkup, etc..." required class="w-full border border-slate-800 rounded-xl px-4 py-3 bg-slate-900/60 focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-slate-900 transition-all text-sm text-white resize-none"></textarea>
+                </div>
+                
+                <button type="submit" id="submit-btn" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-4 rounded-xl transition-all text-lg mt-3 shadow-md hover:shadow-lg active:scale-98 flex items-center justify-center gap-2 duration-150 shimmer-btn">
+                    <span id="btn-text">Send Quote Request</span>
+                    <span id="btn-spinner" class="hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                </button>
+            </form>
+            
+            <!-- Premium feedback screen -->
+            <div id="form-success-card" class="hidden text-center py-8 px-4">
+                <div class="w-16 h-16 bg-green-950/80 text-green-400 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-900 shadow-inner">
+                    <i data-lucide="check-circle-2" class="w-10 h-10 animate-bounce"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">Quote Request Received!</h4>
+                <p class="text-slate-400 text-sm max-w-sm mx-auto leading-relaxed">
+                    Thank you! A local technician based right here in Benton County will call or text you shortly at your number.
+                </p>
+                <button id="reset-form-btn" class="mt-6 text-sm text-green-400 hover:text-green-500 font-bold hover:underline">
+                    Send another request
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Legal Footer -->
+    <footer class="bg-slate-950 text-slate-500 py-12 px-4 text-center text-sm border-t border-slate-900 mt-auto">
+        <div class="max-w-6xl mx-auto flex flex-col items-center gap-6">
+            <div class="flex items-center space-x-2">
+                <img src="/assets/logo-lM5zd1qj.png" alt="Avid Logo" class="h-6 w-auto object-contain brightness-90">
+                <p class="font-bold text-slate-400">Avid Pest Control — Based in Pea Ridge, AR</p>
+            </div>
+            
+            <p class="max-w-md mx-auto text-xs text-slate-600 leading-relaxed">
+                Locally operated, fully licensed, and insured. Serving Benton County and the surrounding Northwest Arkansas communities. Call or text <a href="tel:+14796444061" class="text-green-500 font-bold hover:underline">(479) 644-4061</a>.
+            </p>
+            
+            <div class="flex gap-6 text-xs font-semibold text-slate-600">
+                <a href="#hero" class="hover:text-slate-300">Home</a>
+                <a href="#difference" class="hover:text-slate-300">The Difference</a>
+                <a href="#services" class="hover:text-slate-300">Services</a>
+                <a href="#areas" class="hover:text-slate-300">Service Areas</a>
+            </div>
+            
+            <p class="text-xs text-slate-700 mt-4">&copy; 2026 Avid Pest Control. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons & Interactivity script -->
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+
+        // Reveal animations on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            for (let i = 0; i < revealElements.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = revealElements[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    revealElements[i].classList.add('active');
+                }
+            }
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger initial reveal on load
+        setTimeout(revealOnScroll, 100);
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
+
+        // Close mobile menu on clicking any navigation link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Form Submission Interception (Premium Feedback Experience)
+        const leadForm = document.getElementById('lead-form');
+        const formSuccessCard = document.getElementById('form-success-card');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+        const resetFormBtn = document.getElementById('reset-form-btn');
+
+        leadForm.addEventListener('submit', (e) => {
+            // Check form action: if it's still PLACEHOLDER, mock it for high-end preview.
+            // If the user replaces it with Formspree, they can proceed natively, but let's mock it
+            // if it has PLACEHOLDER in the action so that they get a working demo of the success state.
+            if (leadForm.action.includes('PLACEHOLDER')) {
+                e.preventDefault();
+                
+                // Show loading spinner
+                submitBtn.disabled = true;
+                btnText.textContent = "Sending Request...";
+                btnSpinner.classList.remove('hidden');
+                
+                // Mock delay
+                setTimeout(() => {
+                    // Hide form and show success card
+                    leadForm.classList.add('hidden');
+                    formSuccessCard.classList.remove('hidden');
+                    
+                    // Reset button states
+                    submitBtn.disabled = false;
+                    btnText.textContent = "Send Quote Request";
+                    btnSpinner.classList.add('hidden');
+                    leadForm.reset();
+                }, 1200);
+            }
+        });
+
+        resetFormBtn.addEventListener('click', () => {
+            formSuccessCard.classList.add('hidden');
+            leadForm.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
