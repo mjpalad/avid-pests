@@ -6,6 +6,21 @@
     <title>Avid Pest Control | Northwest Arkansas | Pea Ridge, Rogers, Bentonville</title>
     <meta name="description" content="Affordable, family-owned pest control serving Pea Ridge, Bentonville, Rogers, Garfield, and NWA. No long-term contracts. Pet & kid friendly treatments.">
     
+    <!-- Dynamic Search Engine Indexing (Block staging, allow production) -->
+    <script>
+        (function() {
+            const prodDomains = ['avidpests.com', 'www.avidpests.com'];
+            const meta = document.createElement('meta');
+            meta.name = 'robots';
+            if (prodDomains.includes(window.location.hostname)) {
+                meta.content = 'index, follow';
+            } else {
+                meta.content = 'noindex, nofollow';
+            }
+            document.head.appendChild(meta);
+        })();
+    </script>
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons CDN -->
