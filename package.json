@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "deploy:staging": "npm run build && gh-pages -r https://github.com/mjpalad/avid-pests-staging.git -d dist"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
